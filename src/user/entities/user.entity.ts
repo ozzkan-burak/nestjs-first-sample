@@ -1,11 +1,30 @@
-import { Column, Entity, PrimaryColumn } from 'typeorm';
+import { Delete } from '@nestjs/common';
+import {
+  Column,
+  CreateDateColumn,
+  DeleteDateColumn,
+  Entity,
+  PrimaryColumn,
+  UpdateDateColumn,
+} from 'typeorm';
 
 @Entity()
 export class User {
   @PrimaryColumn()
   id: number;
+
   @Column()
   name: string;
+
   @Column({ unique: true })
   email: string;
+
+  @CreateDateColumn()
+  createdAt!: Date;
+
+  @UpdateDateColumn()
+  updatedAt!: Date;
+
+  @DeleteDateColumn()
+  deletedAt!: Date;
 }

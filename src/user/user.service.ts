@@ -3,6 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { CreateUserDto } from './dto/create-user.dto';
 import { User } from './entities/user.entity';
 import { Repository } from 'typeorm';
+import { v4 as uuidV4 } from 'uuid'; // Ensure you have uuid installed
 
 @Injectable()
 export class UserService {
@@ -18,8 +19,12 @@ export class UserService {
     ];
   }
   async createUser(createUserDto: CreateUserDto) {
-    const user = this.userRepository.create(createUserDto);
+    const newUser = await this.userRepository.create(createUserDto);
+    newUser.id = uuidV4();
+    newUser.email = createUserDto.email.toLowerCase();
+    newUser.name = createUserDto.name.toLowerCase();
+    await this.userRepository.save(newUser);
     //const result = await this.userRepository.save(user);
-    return { message: 'Saved User', user };
+    return { message: 'Saved User', newUser };
   }
 }
