@@ -35,4 +35,13 @@ export class UserService {
     await this.userRepository.save(user);
     return { message: 'Updated User', user };
   }
+
+  async deleteUser(id: string) {
+    const user = await this.userRepository.findOneBy({ id });
+    if (!user) {
+      return { message: 'User not found' };
+    }
+    await this.userRepository.softDelete(id);
+    return { message: 'Deleted User', user };
+  }
 }
