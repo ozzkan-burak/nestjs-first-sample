@@ -24,5 +24,6 @@ export class CreateUserDto {
     example: '1990-05-12',
   })
   @IsDateString()
+  @IsAdult({ message: 'User must be at least 18 years old' })
   birthday: Date;
 }
