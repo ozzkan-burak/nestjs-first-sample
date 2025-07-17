@@ -5,6 +5,7 @@ import { UserModule } from './user/user.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { User } from './user/entities/user.entity';
 import { ProductModule } from './product/product.module';
+import { Product } from './product/entities/product.entity';
 
 @Module({
   imports: [
@@ -15,7 +16,7 @@ import { ProductModule } from './product/product.module';
       username: 'nestjs_user',
       password: 'nestjs_2025',
       database: 'nestjs_db',
-      entities: [User],
+      entities: [User, Product],
       synchronize: true, // Set to false in production
       logging: true, // Enable logging for debugging
     }),
