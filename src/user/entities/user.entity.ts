@@ -1,4 +1,6 @@
 import { Delete } from '@nestjs/common';
+import { v4 as uuidV4 } from 'uuid'; // Ensure you have uuid installed
+
 import {
   Column,
   CreateDateColumn,
@@ -30,4 +32,8 @@ export class User {
 
   @DeleteDateColumn()
   deletedAt!: Date;
+
+  BeforeInsert() {
+    this.id = uuidV4();
+  }
 }
