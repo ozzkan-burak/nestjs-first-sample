@@ -1,4 +1,10 @@
-import { BaseEntity, Column, Entity, PrimaryColumn } from 'typeorm';
+import {
+  BeforeInsert,
+  Column,
+  Entity,
+  PrimaryColumn,
+  CreateDateColumn,
+} from 'typeorm';
 import { v4 as uuidV4 } from 'uuid'; // Ensure you have uuid installed
 @Entity()
 export class Product {
@@ -8,7 +14,10 @@ export class Product {
   @Column()
   name: string;
 
-  BeforeInsert() {
+  @BeforeInsert() {
     this.id = uuidV4();
   }
+
+  @CreateDateColumn()
+  createdAt!: Date;
 }

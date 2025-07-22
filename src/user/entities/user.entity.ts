@@ -1,4 +1,3 @@
-import { Delete } from '@nestjs/common';
 import { v4 as uuidV4 } from 'uuid'; // Ensure you have uuid installed
 
 import {
@@ -8,6 +7,7 @@ import {
   Entity,
   PrimaryColumn,
   UpdateDateColumn,
+  BeforeInsert
 } from 'typeorm';
 
 @Entity()
@@ -33,7 +33,7 @@ export class User {
   @DeleteDateColumn()
   deletedAt!: Date;
 
-  BeforeInsert() {
+  @BeforeInsert() {
     this.id = uuidV4();
   }
 }
