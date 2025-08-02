@@ -15,7 +15,10 @@ export class Product {
   name: string;
 
   @BeforeInsert() {
-    this.id = uuidV4();
+    async BeforeInsert(){
+
+      this.id = uuidV4();
+    }
   }
 
   @CreateDateColumn()
