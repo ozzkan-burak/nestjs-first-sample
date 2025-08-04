@@ -1,26 +1,16 @@
+import { Delete } from '@nestjs/common';
+import { OzzBaseEntity } from 'src/entities/ozz.base.entitiy';
 import {
   BeforeInsert,
   Column,
   Entity,
   PrimaryColumn,
   CreateDateColumn,
+  UpdateDateColumn,
 } from 'typeorm';
 import { v4 as uuidV4 } from 'uuid'; // Ensure you have uuid installed
 @Entity()
-export class Product {
-  @PrimaryColumn()
-  id: string;
-
+export class Product extends OzzBaseEntity {
   @Column()
   name: string;
-
-  @BeforeInsert() {
-    async BeforeInsert(){
-
-      this.id = uuidV4();
-    }
-  }
-
-  @CreateDateColumn()
-  createdAt!: Date;
 }
