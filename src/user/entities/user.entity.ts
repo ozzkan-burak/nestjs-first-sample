@@ -1,20 +1,8 @@
-import { v4 as uuidV4 } from 'uuid'; // Ensure you have uuid installed
-
-import {
-  Column,
-  CreateDateColumn,
-  DeleteDateColumn,
-  Entity,
-  PrimaryColumn,
-  UpdateDateColumn,
-  BeforeInsert
-} from 'typeorm';
+import { Column, Entity } from 'typeorm';
+import { OzzBaseEntity } from 'src/entities/ozz.base.entitiy';
 
 @Entity()
-export class User {
-  @PrimaryColumn()
-  id: string;
-
+export class User extends OzzBaseEntity {
   @Column()
   name: string;
 
@@ -23,17 +11,4 @@ export class User {
 
   @Column()
   birthDay: Date;
-
-  @CreateDateColumn()
-  createdAt!: Date;
-
-  @UpdateDateColumn()
-  updatedAt!: Date;
-
-  @DeleteDateColumn()
-  deletedAt!: Date;
-
-  @BeforeInsert() {
-    this.id = uuidV4();
-  }
 }
