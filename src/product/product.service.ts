@@ -16,4 +16,14 @@ export class ProductService {
     const result = await this.productRepository.save(product);
     return result;
   }
+  async updateProduct(createProductDto: CreateProductDto) {
+    const product = new Product();
+    product.name = createProductDto.name;
+    const result = await this.productRepository.save(product);
+    return result;
+  }
+  async deleteProduct(productId: string) {
+    const result = await this.productRepository.softDelete(productId);
+    return result;
+  }
 }
