@@ -7,3 +7,5 @@ export class Product extends OzzBaseEntity {
   @Column()
   name: string;
 }
+
+// The Product entity extends OzzBaseEntity to inherit common properties and methods.
