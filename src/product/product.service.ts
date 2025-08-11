@@ -26,4 +26,8 @@ export class ProductService {
     const result = await this.productRepository.softDelete(productId);
     return result;
   }
+
+  async all() {
+    return this.productRepository.find();
+  }
 }

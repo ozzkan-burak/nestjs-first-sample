@@ -21,24 +21,24 @@ export class ProductController {
   })
   getActiveProducts() {
     // Logic to retrieve active products
-    return [];
+    return await this.productService.all();
   }
 
   @Post()
-  createProduct(@Body() createProductDto: CreateProductDto) {
-    return this.productService.createProduct(createProductDto);
+  async createProduct(@Body() createProductDto: CreateProductDto) {
+    return await this.productService.createProduct(createProductDto);
   }
 
   @Patch()
-  updateProduct(
+  async updateProduct(
     @Param('id') id: string,
     @Body() createProductDto: CreateProductDto
   ) {
-    return this.productService.updateProduct(createProductDto);
+    return await this.productService.updateProduct(createProductDto);
   }
 
   @Delete(':id')
-  deleteProduct(@Param('id') id: string) {
-    return this.productService.deleteProduct(id);
+  async deleteProduct(@Param('id') id: string) {
+    return await this.productService.deleteProduct(id);
   }
 }
