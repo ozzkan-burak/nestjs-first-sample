@@ -7,3 +7,4 @@ export class Product extends OzzBaseEntity {
   @Column()
   name: string;
 }
+//
